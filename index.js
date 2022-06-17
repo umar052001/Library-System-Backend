@@ -14,6 +14,7 @@ const {
 } = require("./controllers/librarian/increaseCopies");
 const { handleBooksDelete } = require("./controllers/librarian/deleteBooks");
 const { handleBooksDisplay } = require("./controllers/getBooks");
+const { handleIssueDate } = require("./controllers/librarian/issue/issueBook");
 
 //connection to postgres
 const db = knex({
@@ -54,6 +55,9 @@ app.put("/decreasebooks", (req, res) => {
 });
 app.put("/increasebooks", (req, res) => {
   handleCopiesIncrease(req, res, db);
+});
+app.post("/issuebooks", (req, res) => {
+  handleIssueDate(req, res, db);
 });
 
 //app running
