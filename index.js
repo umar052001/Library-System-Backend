@@ -15,6 +15,7 @@ const {
 const { handleBooksDelete } = require("./controllers/librarian/deleteBooks");
 const { handleBooksDisplay } = require("./controllers/getBooks");
 const { handleIssueDate } = require("./controllers/librarian/issue/issueBook");
+const { handleStudentData } = require("./controllers/studentData");
 
 //connection to postgres
 const db = knex({
@@ -41,13 +42,17 @@ app.post("/signinstudent", handleStudentSignIn(db));
 app.get("/getbooks", (req, res) => {
   handleBooksDisplay(req, res, db);
 });
+app.get("/getstudent/:email", (req, res) => {
+  handleStudentData(req, res, db);
+});
+
 
 //routes librarian
 app.post("/signinlibrarian", handleLibrarianSignIn(db));
 app.post("/addbooks", (req, res) => {
   handleBooksInsertion(req, res, db);
 });
-app.delete("/deletebooks", (req, res) => {
+app.delete("/deletebooks/:isbn", (req, res) => {
   handleBooksDelete(req, res, db);
 });
 app.put("/decreasebooks", (req, res) => {

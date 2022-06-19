@@ -1,5 +1,5 @@
 const handleBooksDelete = (req, res, db) => {
-  const { isbn } = req.body;
+  const { isbn } = req.params;
 
   db("books")
     .where({ isbn })
