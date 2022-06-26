@@ -1,5 +1,5 @@
 const handleCopiesDecrease = (req, res, db) => {
-  const { isbn } = req.body;
+  const { isbn } = req.params;
   if (!isbn) {
     return res.status(400).json("incorrect form submission");
   }
